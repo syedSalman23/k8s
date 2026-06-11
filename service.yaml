@@ -1,0 +1,30 @@
+# Core Kubernetes API
+apiVersion: v1
+
+# Create a Service
+kind: Service
+
+# Service information
+metadata:
+
+  # Service name
+  name: nginx-web-service
+
+# Service configuration
+spec:
+
+  # Find Pods having label app=nginx-web
+  selector:
+    app: nginx-web
+
+  # Network configuration
+  ports:
+
+  # Service listens on port 80
+  - port: 80
+
+    # Forward traffic to Pod port 80
+    targetPort: 80
+
+  # Expose service outside cluster
+  type: NodePort

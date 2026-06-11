@@ -1,0 +1,47 @@
+# Which Kubernetes API handles Deployment objects
+apiVersion: apps/v1
+
+# Create a Deployment
+kind: Deployment
+
+# Information about the Deployment
+metadata:
+  # Deployment name
+  name: nginx-web
+
+# Desired state of the Deployment
+spec:
+
+  # Always keep 3 Pods running
+  replicas: 3
+
+  # Deployment manages Pods with this label
+  selector:
+    matchLabels:
+      app: nginx-web
+
+  # Blueprint for creating Pods
+  template:
+
+    # Labels assigned to Pods
+    metadata:
+      labels:
+        app: nginx-web
+
+    # Pod specification
+    spec:
+
+      # Containers inside the Pod
+      containers:
+
+      # Container name
+      - name: nginx
+
+        # Docker image to pull from Docker Hub
+        image: nginx
+
+        # Container ports
+        ports:
+
+        # Nginx listens on port 80
+        - containerPort: 80
